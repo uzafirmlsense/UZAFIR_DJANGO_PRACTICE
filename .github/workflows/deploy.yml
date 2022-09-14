@@ -50,19 +50,18 @@ jobs:
     - name: Connect to gcloud
       uses: google-github-actions/setup-gcloud@v0
       with:
-        project_id: ${{ secrets.GCLOUD_PROJECTID }}
-        service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY}}
+        project_id: ${{ secrets.PROJECT_ID }}
+        service_account_key: ${{ secrets.SERVICE_ACCOUNT}}
         export_default_credentials: true
-
-
-    - name: Get Cloud SQL Proxy
-      run: |
-        wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
-        chmod +x cloud_sql_proxy
     - name: Gather Static Files
-      run: ./cloud_sql_proxy -instances=dashboarding-359510:us-east1:dashboarding-main=tcp:5432 & python manage.py collectstatic --noinput
+      run: python manage.py collectstatic --noinput
 
     ### CREATE RUNTIME MIGRATIONS, THIS MAY CAUSE SOME ERRORS IF MIGRATIONS FOLDER IS NOT MAINTAINED, REMOVE MIGRATIONS FOLDER NAME FROM .gitignore
+
+    # - name: Get Cloud SQL Proxy
+    #   run: |
+    #     wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
+    #     chmod +x cloud_sql_proxy
     # - name: Run Migrations
     #   run: |
     #       python manage.py makemigrations
@@ -74,5 +73,5 @@ jobs:
       with:
         deliverables: app.yaml
         version: v1
-        project_id: ${{ secrets.GCLOUD_PROJECTID }}
-        credentials: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        project_id: ${{ secrets.PROJECT_ID }}
+        credentials: ${{ secrets.SERVICE_ACCOUNT }}
