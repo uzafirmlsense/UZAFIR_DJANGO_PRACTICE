@@ -1,5 +1,5 @@
 # [START django_app]
-service: django_template
+service: django-template
 runtime: python38
 handlers:
 # This configures Google App Engine to serve the files in the app's
