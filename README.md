@@ -1,6 +1,6 @@
 # Git-Github-Actions Learner/Django Template
 # Django Template
-This is the web app for the Transaction Categorization Dashboard project.
+This is the web app for the Django Template project.
 
 
 # Some Coding Practices to Follow
@@ -41,7 +41,7 @@ API is deployed using github actions, Be sure to change, app.yml , add right sec
    pip install -r requirements.txt
    ```
    
-   Follow the guidelines in the other Transaction Categorization repos for installing our private packages.
+   Follow the guidelines in the other Django Template repos for installing our private packages.
 
 4) SKIP: Place the ```.env``` file in the root directory (if you don't have this file, ask the repo owner)
    
