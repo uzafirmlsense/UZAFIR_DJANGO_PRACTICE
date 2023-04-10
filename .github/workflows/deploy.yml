@@ -16,10 +16,11 @@ jobs:
     name: Deploying to Google Cloud
     runs-on: ubuntu-latest
     ##### ANY SECRETS WHICH ARE TO BE SET AS ENV's ON UBUNTU LATEST IMAGE BEFORE DEPLOYMENT, THIS DOESNOT SET ENV's FOR APP ENGINE
-    # env:
-    #   DB_NAME: ${{ secrets.DB_NAME}}
-    #   DB_USER: ${{ secrets.DB_USER}}
-    #   DB_PWD: ${{ secrets.DB_PWD}}
+    env:
+      DB_NAME: ${{ secrets.DB_NAME}}
+      DB_USER: ${{ secrets.DB_USER}}
+      DB_PWD: ${{ secrets.DB_PWD}}
+      DB_HOST: ${{ secrets.DB_HOST}}
     #   DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
     #   GOOGLE_APP_CLIENT_ID: ${{ secrets.GOOGLE_APP_CLIENT_SECRET }}
     #   GOOGLE_APP_KEY: ${{ secrets.GOOGLE_APP_KEY }}
@@ -27,12 +28,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     ##### CREATE RUNTIME ENV FILE FOR DEPLOYMENT, AND ADD SERVICE-ACCOUNT-KEY.json IF NEEDED
-    # - name: Creating Runtime .env and add service-account-key
-    #   run: |
-    #     touch .env
-    #     echo  DB_NAME="${{ secrets.DB_NAME }}" >> .env
-    #     echo  DB_USER="${{ secrets.DB_USER }}" >> .env
-    #     echo  DB_PWD="${{ secrets.DB_PWD }}" >> .env
+    - name: Creating Runtime .env and add service-account-key
+      run: |
+        touch .env
+        echo  DB_NAME="${{ secrets.DB_NAME }}" >> .env
+        echo  DB_USER="${{ secrets.DB_USER }}" >> .env
+        echo  DB_PWD="${{ secrets.DB_PWD }}" >> .env
+        echo  DB_HOST="${{ secrets.DB_HOST }}" >> .env
     #     echo  DJANGO_SECRET_KEY="${{ secrets.DJANGO_SECRET_KEY }}" >> .env
     #     echo  BUCKET="${{ secrets.BUCKET }}" >> .env
     #     echo  GOOGLE_APPLICATION_CREDENTIALS="./service-account-key.json"
