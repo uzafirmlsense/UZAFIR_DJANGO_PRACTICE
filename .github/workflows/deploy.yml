@@ -3,9 +3,9 @@ name: Deploy to GAE
 # Controls when the workflow will run
 on:
   push:
-    branches: [ django_template ]
+    branches: [ uzafir-django ]
   pull_request:
-    branches: [ django_template ]
+    branches: [ uzafir-django ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -50,8 +50,8 @@ jobs:
     - name: Connect to gcloud
       uses: google-github-actions/setup-gcloud@v0
       with:
-        project_id: ${{ secrets.PROJECT_ID }}
-        service_account_key: ${{ secrets.SERVICE_ACCOUNT}}
+        project_id: ${{ secrets.PROJECT_ID_UZAFIR }}
+        service_account_key: ${{ secrets.SERVICE_ACCOUNT_UZAFIR }}
         export_default_credentials: true
     - name: Gather Static Files
       run: python manage.py collectstatic --noinput
@@ -73,5 +73,5 @@ jobs:
       with:
         deliverables: app.yaml
         version: v1
-        project_id: ${{ secrets.PROJECT_ID }}
-        credentials: ${{ secrets.SERVICE_ACCOUNT }}
+        project_id: ${{ secrets.PROJECT_ID_UZAFIR }}
+        credentials: ${{ secrets.SERVICE_ACCOUNT_UZAFIR }}
