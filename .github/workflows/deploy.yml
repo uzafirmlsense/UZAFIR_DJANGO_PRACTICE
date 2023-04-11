@@ -21,6 +21,7 @@ jobs:
       DB_USER: ${{ secrets.DB_USER}}
       DB_PWD: ${{ secrets.DB_PWD}}
       DB_HOST: ${{ secrets.DB_HOST}}
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
     #   DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
     #   GOOGLE_APP_CLIENT_ID: ${{ secrets.GOOGLE_APP_CLIENT_SECRET }}
     #   GOOGLE_APP_KEY: ${{ secrets.GOOGLE_APP_KEY }}
@@ -35,6 +36,7 @@ jobs:
         echo  DB_USER="${{ secrets.DB_USER }}" >> .env
         echo  DB_PWD="${{ secrets.DB_PWD }}" >> .env
         echo  DB_HOST="${{ secrets.DB_HOST }}" >> .env
+        echo  DJANGO_SECRET_KEY="${{ secrets.DJANGO_SECRET_KEY }}" >> .env
     #     echo  DJANGO_SECRET_KEY="${{ secrets.DJANGO_SECRET_KEY }}" >> .env
     #     echo  BUCKET="${{ secrets.BUCKET }}" >> .env
     #     echo  GOOGLE_APPLICATION_CREDENTIALS="./service-account-key.json"
